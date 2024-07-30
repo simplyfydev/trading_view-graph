@@ -13,16 +13,14 @@
             }
 
             searchSymbols(userInput, exchange, symbolType, onResult) {
-                // Implement symbol search here
                 const symbols = [
-                    { symbol: 'CCD', full_name: 'CCD', description: 'Caffe Coffe Day', exchange: 'CUSTOM' }
+                    { symbol: 'CCD', full_name: 'CCD', description: 'Caffe Coffee Day', exchange: 'CUSTOM' }
                 ];
 
                 const filteredSymbols = symbols.filter(symbol =>
                     symbol.symbol.toLowerCase().includes(userInput.toLowerCase()) ||
                     symbol.full_name.toLowerCase().includes(userInput.toLowerCase())
                 );
-                console.log('Filtered Symbols:', filteredSymbols)
                 onResult(filteredSymbols);
             }
         }
@@ -47,17 +45,14 @@
                 library_path: "charting_library/",
                 locale: getParameterByName('lang') || "en",
                 disabled_features: ["use_localstorage_for_settings"],
-                // enabled_features: ["study_templates"],
-                // charts_storage_url: 'https://saveload.tradingview.com',
-                // charts_storage_api_version: "1.1",
-                // client_id: 'tradingview.com',
-                // user_id: 'public_user_id',
+                supported_resolutions: ['1D', '1W', '1M', '1Y'],
+                theme: 'Dark'
             });
 
             window.frames[0].focus();
         }
-            window.addEventListener('DOMContentLoaded', initOnReady, false);
 
+        window.addEventListener('DOMContentLoaded', initOnReady, false);
     </script>
 </head>
 
