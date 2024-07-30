@@ -40,16 +40,16 @@ app.get('/history', (req, res) => {
     const { symbol, from, to, resolution } = req.query;
 
     // If `from` and `to` are provided, use them; otherwise, default to a year range
-    // let fromTimestamp = parseInt(from, 10);
-    // let toTimestamp = parseInt(to, 10);
+    let fromTimestamp = parseInt(from, 10);
+    let toTimestamp = parseInt(to, 10);
 
-    // // Calculate timestamps for the year 2024 if not provided
-    // if (!from || !to) {
-    //     const startOfYear = new Date('2024-01-01T00:00:00Z').getTime() / 1000;
-    //     const endOfYear = new Date('2024-12-31T23:59:59Z').getTime() / 1000;
-    //     fromTimestamp = fromTimestamp || startOfYear;
-    //     toTimestamp = toTimestamp || endOfYear;
-    // }
+    // Calculate timestamps for the year 2024 if not provided
+    if (!from || !to) {
+        const startOfYear = new Date('2024-01-01T00:00:00Z').getTime() / 1000;
+        const endOfYear = new Date('2024-12-31T23:59:59Z').getTime() / 1000;
+        fromTimestamp = fromTimestamp || startOfYear;
+        toTimestamp = toTimestamp || endOfYear;
+    }
 
     console.log('From Timestamp:', fromTimestamp);
     console.log('To Timestamp:', toTimestamp);
@@ -62,8 +62,8 @@ app.get('/history', (req, res) => {
             return res.json({ s: 'error', errmsg: 'Symbol not found' });
         }
 
-        // const data = historicalData[symbol].filter(d => d.time >= fromTimestamp && d.time <= toTimestamp);
         const data = historicalData[symbol].filter(d => d.time >= fromTimestamp && d.time <= toTimestamp);
+
         console.log('Filtered data:', data);
 
         if (data.length > 0) {
