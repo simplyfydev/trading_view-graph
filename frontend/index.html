@@ -36,7 +36,6 @@
             var customDatafeedUrl = "http://43.205.223.72:5555";
             var symbol = getParameterByName('symbol') || 'CCD';
 
-
             var widget = window.tvWidget = new TradingView.widget({
                 fullscreen: true,
                 symbol: symbol,
@@ -48,6 +47,10 @@
                 disabled_features: ["use_localstorage_for_settings"],
                 supported_resolutions: ['1D', '1W', '1M', '1Y'],
                 theme: 'Dark'
+            });
+
+            widget.onChartReady(function() {
+                widget.chart().setChartType(9); // 9 corresponds to Hollow Candles
             });
 
             window.frames[0].focus();
