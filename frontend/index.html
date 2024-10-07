@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
     <title>TradingView Advanced Charts demo</title>
@@ -7,6 +7,8 @@
     <script type="text/javascript" src="charting_library/charting_library.standalone.js"></script>
     <script type="text/javascript" src="datafeeds/udf/dist/bundle.js"></script>
     <script type="text/javascript">
+        import * as Datafeeds from "./datafeeds/udf";
+
         class CustomDatafeed extends Datafeeds.UDFCompatibleDatafeed {
             constructor(datafeedURL) {
                 super(datafeedURL);
@@ -26,17 +28,16 @@
         }
 
         function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            name = name.replace(/\[/, "\\[").replace(/]/, "\\]");
+            const regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
         function initOnReady() {
-            var customDatafeedUrl = "http://43.205.223.72:5555";
-            var symbol = getParameterByName('symbol') || 'CCD';
-
-            var widget = window.tvWidget = new TradingView.widget({
+            const customDatafeedUrl = "https://coins.simplyfy.trade:5555";
+            const symbol = getParameterByName('symbol') || 'CCD';
+            const widget = window.tvWidget = new TradingView.widget({
                 fullscreen: true,
                 symbol: symbol,
                 interval: '1D',
@@ -60,7 +61,7 @@
     </script>
 </head>
 
-<body style="margin:0px;">
+<body style="margin:0;">
     <div id="tv_chart_container" style="width: 100%; height: 100vh;"></div>
 </body>
 

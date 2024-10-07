@@ -3572,7 +3572,18 @@ export interface ChartingLibraryWidgetConstructor {
 	 * Constructor for the Advanced Charts Widget
 	 * @param  {ChartingLibraryWidgetOptions|TradingTerminalWidgetOptions} options - Constructor options
 	 */
-	new (options: ChartingLibraryWidgetOptions | TradingTerminalWidgetOptions): IChartingLibraryWidget;
+	new(options: {
+        container: string,
+        symbol: (string | string),
+        datafeed: CustomDatafeed,
+        fullscreen: boolean,
+        interval: string,
+        supported_resolutions: string[],
+        theme: string,
+        locale: (string | string),
+        library_path: string,
+        disabled_features: string[]
+    }): IChartingLibraryWidget;
 }
 export interface ChartingLibraryWidgetOptions {
 	/**
